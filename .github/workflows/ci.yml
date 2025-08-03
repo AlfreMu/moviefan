@@ -43,6 +43,14 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
+      - name: Esperar a que Postgres esté listo
+        run: |
+          for i in {1..10}; do
+            nc -z localhost 5432 && echo "Postgres disponible" && break
+            echo "Esperando Postgres..."
+            sleep 3
+          done
+
       - name: Test de conexión a la DB
         run: |
           node -e "require('./db').connect().then(() => console.log('✅ Conexión exitosa')).catch(err => { console.error('❌ Falló la conexión'); process.exit(1); })"
