@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: moviefan-db
+    environment:
+      POSTGRES_USER: alfre
+      POSTGRES_PASSWORD: alfre123
+      POSTGRES_DB: moviefan
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

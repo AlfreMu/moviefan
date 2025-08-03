@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: moviefan-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      PGUSER: alfre
+      PGPASSWORD: alfre123
+      PGHOST: db
+      PGPORT: 5432
+      PGDATABASE: moviefan
+      
+  db:
+    image: postgres:15
+    container_name: moviefan-db
+    environment:
+      POSTGRES_USER: alfre
+      POSTGRES_PASSWORD: alfre123
+      POSTGRES_DB: moviefan
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:
