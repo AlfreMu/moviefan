@@ -53,4 +53,4 @@ jobs:
 
       - name: Test de conexión a la DB
         run: |
-          node -e "require('./db').connect().then(() => console.log('✅ Conexión exitosa')).catch(err => { console.error('❌ Falló la conexión'); process.exit(1); })"
+          node -e "const pool = require('./db'); pool.query('SELECT 1').then(() => { console.log('✅ Conexión exitosa'); return pool.end(); }).catch(err => { console.error('❌ Falló la conexión'); process.exit(1); })"
