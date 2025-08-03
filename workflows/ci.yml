@@ -1,4 +1,4 @@
-name: CI - MovieFan API
+name: CI MovieFan API
 
 on:
   push:
