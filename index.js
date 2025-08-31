@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const pool = require('./db'); // conexión a PostgreSQL
 const PORT = 3000;
 const resenasRoutes = require('./routes/resenas');
 
 // Middleware para parsear JSON
+app.use(cors());
 app.use(express.json());
 app.use('/resenas', resenasRoutes);
 
